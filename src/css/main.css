@@ -1,0 +1,414 @@
+/*Global styles*/
+
+body {
+    background: #FFFFFF;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    position: relative;
+    font: 13px/1.5 Arial, sans-serif;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: HelveticaNeue, Helvetica, Arial, sans-serif;
+}
+
+main {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+
+input {
+    background: #FFFFFF;
+    border: 2px solid #E9ECEF;
+    border-radius: 4px;
+    font-size: 15px;
+    color: #000000;
+    letter-spacing: 0;
+    padding-left: 10px;
+    height: 32px;
+}
+
+input:hover,
+input:focus {
+    outline: none;
+    border: 2px solid #007DFF;
+}
+
+
+::-webkit-scrollbar-thumb {
+    min-height: 20px;
+    border: solid transparent;
+    border-width: 1px 3px;
+    border-radius: 10px;
+    background-clip: content-box;
+    box-shadow: inset 0 0 0 10px rgba(0, 0, 0, .2);
+}
+
+::-webkit-scrollbar-corner {
+    background: 0 0;
+}
+
+::-webkit-scrollbar {
+    width: 13px;
+    height: 13px;
+}
+
+.app-header {
+    position: relative;
+    z-index: 19;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    -webkit-align-self: center;
+    align-self: center;
+    margin: 0 auto;
+    padding-right: 20px;
+    padding-left: 20px;
+    height: 70px;
+    font-size: 15px;
+    color: #000;
+    box-shadow: 0 -1px 0 0 #E9ECEF;
+
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.app-header-left-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    flex-shrink: 1;
+}
+
+.app-header-right-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    padding: 18px 4px 16px 0;
+}
+
+.app-header-item {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+}
+
+.app-header-main-logo {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    overflow: hidden;
+    margin: 1px 0 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.app-header:after {
+    position: absolute;
+    right: 0;
+    left: 0;
+    content: "";
+    background-repeat: no-repeat;
+    background-position: 50%;
+    pointer-events: none;
+    z-index: 9;
+    bottom: 0;
+    height: 1px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modal {
+    width: 478px;
+    max-width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    position: static;
+    margin: 20px auto;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    z-index: 10001;
+    transition: opacity .2s, -webkit-transform .3s;
+    transition: transform .3s, opacity .2s;
+    transition: transform .3s, opacity .2s, -webkit-transform .3s;
+    color: #000000;
+}
+
+.modal-open .modal.open {
+    opacity: 1;
+    pointer-events: auto;
+    box-sizing: border-box;
+    -webkit-animation: modalAnimation .3s;
+    animation: modalAnimation .3s;
+    will-change: transform;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.modal-overlay.modal-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-overlay:before {
+    content: " ";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.modal-icon {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    position: relative;
+    box-sizing: content-box;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+}
+
+.modal-icon:first-child {
+    margin-top: 32px;
+}
+
+.modal-icon.icon-success {
+    background-image: url("../assets/emoji2.svg");
+    background-size: cover;
+}
+
+.modal-title {
+    color: #000000;
+    font-weight: 600;
+    text-transform: none;
+    position: relative;
+    display: block;
+    padding: 16px 16px;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.modal-text {
+    font-size: 16px;
+    position: relative;
+    float: none;
+    line-height: normal;
+    vertical-align: top;
+    text-align: left;
+    display: inline-block;
+    margin: 0;
+    padding: 0 10px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, .64);
+    max-width: calc(100% - 20px);
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.modal-footer {
+    margin-top: 24px;
+    padding-right: 16px;
+    padding-left: 16px;
+    padding-bottom: 32px;
+    text-align: right;
+}
+
+.modal-button-container {
+    text-align: right;
+    display: inline-block;
+    position: relative;
+}
+
+@-webkit-keyframes modalAnimation {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+    1% {
+        -webkit-transform: scale(.5);
+        transform: scale(.5)
+    }
+    45% {
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05)
+    }
+    80% {
+        -webkit-transform: scale(.95);
+        transform: scale(.95)
+    }
+    to {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+}
+
+@keyframes modalAnimation {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+    1% {
+        -webkit-transform: scale(.5);
+        transform: scale(.5)
+    }
+    45% {
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05)
+    }
+    80% {
+        -webkit-transform: scale(.95);
+        transform: scale(.95)
+    }
+    to {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+}
+
+.button-container {
+    margin: 5px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.button-container > .button {
+    display: inline-flex;
+}
+
+.button {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 36px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    border-radius: 4px;
+    -webkit-transition: box-shadow .15s ease-out;
+    transition: box-shadow .15s ease-out;
+    letter-spacing: 0;
+}
+
+.button-default {
+    background-color: #007DFF;
+    color: #fff;
+}
+
+.button-default:hover {
+    background-color: #0059FF;
+}
+
+.button-default:active {
+    background-color: rgba(11, 0, 255, 0.80);
+}
+
+.button-gray {
+    background: #E9ECEF;
+    border-radius: 4px;
+    color: #000000;
+}
+
+.button-gray:hover {
+    background-color: rgba(0, 16, 33, 0.05);
+}
+
+.button-gray:active {
+    background-color: rgba(4, 29, 56, 0.14);
+}
+
+.button.button-disabled {
+    background-color: #E2E5E8;
+    color: rgba(0, 0, 0, 0.20);
+}
+
+.icon-button {
+    background-color: #E9ECEF;
+    border-radius: 100px;
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    background-size: 8px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.icon-close {
+    background-image: url("../assets/close.svg");
+    margin-right: 12px;
+    background-position-x: 7px;
+    background-position-y: 6px;
+    background-size: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .modal.open {
+        position: absolute;
+        left: 0;
+        bottom: 4px;
+    }
+
+    input {
+        height: 38px;
+    }
+}

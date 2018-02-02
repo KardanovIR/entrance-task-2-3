@@ -1,0 +1,16 @@
+{
+  "plugins": [
+    "node"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "loris/es6"
+  ],
+  "rules": {
+    "node/exports-style": [
+      "error",
+      "module.exports"
+    ]
+  }
+}
