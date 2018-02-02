@@ -303,6 +303,7 @@
 .date-picker-inner {
     display: flex;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .schedule-event-popover {

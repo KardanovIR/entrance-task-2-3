@@ -12,7 +12,7 @@ class CurrentTime extends React.Component {
 			now.getDate(),
 			0, 0, 0);
 		
-		
+		this.getParentElement = props.getParentElement;
 		this.state = {
 			time: this.getCurrentTimeFormatted()
 		};
@@ -26,12 +26,15 @@ class CurrentTime extends React.Component {
 	}
 	
 	calculateCurrentTimeLeft() {
+		if (this.getParentElement() === undefined) return '';
 		const ms_in_day = 86400000;
 		const now = new Date();
 		const time_diff = now.getTime() - this.today.getTime();
-		const left_offset = 6.25;
-		
-		return ((time_diff / ms_in_day * 100) + left_offset) + '%';
+		const timeline_width = this.getParentElement().offsetWidth;
+		const parent_width = this.getParentElement().parentElement.offsetWidth;
+		const left_offset = parent_width - timeline_width;
+		const element_width = 49;
+		return ((time_diff / ms_in_day * timeline_width) + left_offset) - (element_width / 2);
 	}
 	
 	componentDidMount() {

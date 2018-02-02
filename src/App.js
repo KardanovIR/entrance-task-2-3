@@ -21,18 +21,6 @@ const client = new ApolloClient({
 	cache: new InMemoryCache()
 });
 
-
-client.query({ query: gql`
-   {
-        rooms {
-          id,
-          title,
-          capacity,
-          floor
-        }
-   }` }).then(console.log);
-
-
 class App extends Component {
 	render() {
 		return (

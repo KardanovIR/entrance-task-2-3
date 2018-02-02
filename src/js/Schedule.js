@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import Timeline from './Timeline'
 import Dividers from './Dividers';
+import DatePicker from './DatePicker';
+import moment from 'moment';
+
 
 import gql from 'graphql-tag'
 import {graphql} from 'react-apollo'
@@ -31,49 +34,38 @@ const roomsListQuery = gql`
    }
  `;
 
-const FloorsList = ({data}) => {
-	console.log(data);
-	if (data) {
-		return <ul>
-			{data.map(ch => <li key={ch.id}>{ch.name}</li>)}
-		</ul>;
-	}else{
-		return <ul/>;
-	}
-};
+const FloorsList = graphql(roomsListQuery)(props => {
+	console.log(props);
+	return <div>...</div>;
+});
 
 
 export default class Schedule extends Component {
-	
 	
 	constructor(props) {
 		super(props);
 		
 		this.state = {
+			selected_day: moment(),
 			is_modal_open: false,
 			Modal: null,
 		};
-		
 	}
+	
+	setSelectedDay = (direction) => {
+		let _current = this.state.selected_day.clone();
+		_current.subtract(direction, 'days');
+		this.setState({
+			selected_day: _current
+		});
+	};
 	
 	render() {
 		return (
 			<div>
 				<FloorsList/>
 				<main>
-					<div className="date-picker-wrapper">
-						<div className="date-picker">
-							<span className="icon-button sidebar-date-chevron-left"></span>
-							<div className="date-picker-inner">
-								<span className="date-picker-text">14 дек </span>
-								<span className="date-picker-separator">&nbsp;·&nbsp;</span>
-								<span className="date-picker-dayname">Сегодня</span>
-								<div className="date-picker-calendar">
-								</div>
-							</div>
-							<span className="icon-button sidebar-date-chevron-right"></span>
-						</div>
-					</div>
+					<DatePicker onChange={this.setSelectedDay} selectedDay={this.state.selected_day}/>
 					<div className="schedule-wrapper">
 						<div className="schedule-container">
 							<Timeline/>
