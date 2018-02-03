@@ -5,6 +5,9 @@ import {
 	Link
 } from 'react-router-dom'
 
+
+import './css/main.css'
+
 import Schedule from './js/Schedule'
 import Add from './js/Add'
 
@@ -13,7 +16,6 @@ import {createHttpLink} from 'apollo-link-http';
 import gql from 'graphql-tag'
 import {graphql, ApolloProvider} from 'react-apollo'
 
-import './css/main.css'
 import './js/Modal'
 
 const client = new ApolloClient({

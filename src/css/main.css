@@ -23,7 +23,6 @@ main {
     overflow: hidden;
 }
 
-
 input {
     background: #FFFFFF;
     border: 2px solid #E9ECEF;
@@ -40,7 +39,6 @@ input:focus {
     outline: none;
     border: 2px solid #007DFF;
 }
-
 
 ::-webkit-scrollbar-thumb {
     min-height: 20px;
@@ -348,6 +346,9 @@ input:focus {
     -webkit-transition: box-shadow .15s ease-out;
     transition: box-shadow .15s ease-out;
     letter-spacing: 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 
 .button-default {

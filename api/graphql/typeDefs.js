@@ -50,13 +50,20 @@ input EventInput {
     dateEnd: Date!
 }
 
+input EventFilter {
+    date: Date!
+}
+
+
 type Query {
   user(id: ID!): User
   users: [User]
   event(id: ID!): Event
   events: [Event]
+  events(date: Date): [Event]
   room(id: ID!): Room
   rooms: [Room]
+  rooms(events: EventFilter): [Room]
 }
 
 type Mutation {
