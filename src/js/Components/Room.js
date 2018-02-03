@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Events from "./Event";
 
 
 class Room extends Component {
@@ -18,19 +19,7 @@ class Room extends Component {
 				{
 					[...Array(24)].map((e, i) => <div className="schedule-room-hour" key={i}/>)
 				}
-				{/*<div className="schedule-event-item" style="width: 15%; left: 25%">*/}
-				{/*<div className="schedule-event-popover">*/}
-				{/*<div className="schedule-popover-body">*/}
-				{/*<div className="schedule-popover-header">*/}
-				{/*<span>Рассуждения о высоком</span>*/}
-				{/*<span className="schedule-popover-close"></span>*/}
-				{/*</div>*/}
-				{/*<div className="schedule-popover-content">*/}
-				{/*Блша бла бла*/}
-				{/*</div>*/}
-				{/*</div>*/}
-				{/*</div>*/}
-				{/*</div>*/}
+				<Events items={this.room.events}/>
 			</div>
 		)
 	}

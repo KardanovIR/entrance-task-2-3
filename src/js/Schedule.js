@@ -7,7 +7,7 @@ import moment from 'moment';
 
 import gql from 'graphql-tag'
 import {graphql} from 'react-apollo'
-import FloorsListWithData from './Partials/FloorsList'
+import FloorsListWithData from './Components/FloorsList'
 
 import '../css/schedule.css';
 
@@ -31,8 +31,7 @@ export default class Schedule extends React.Component {
 		this.state = {
 			selected_day: moment(),
 			is_modal_open: false,
-			Modal: null,
-			floors: null
+			Modal: null
 		};
 	}
 	
@@ -46,7 +45,6 @@ export default class Schedule extends React.Component {
 	
 	
 	render() {
-		
 		return (
 			<div>
 				<main>
@@ -55,7 +53,7 @@ export default class Schedule extends React.Component {
 						<div className="schedule-container">
 							<Timeline/>
 							<Dividers/>
-							<FloorsListWithData/>
+							<FloorsListWithData date={this.state.selected_day.format()}/>
 						</div>
 					</div>
 				</main>
