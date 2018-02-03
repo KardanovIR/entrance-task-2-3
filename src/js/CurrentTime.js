@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 class CurrentTime extends React.Component {
 	
@@ -19,10 +20,7 @@ class CurrentTime extends React.Component {
 	}
 	
 	getCurrentTimeFormatted() {
-		let pad = (n) => {
-			return n < 10 ? '0' + n : n
-		};
-		return (pad(new Date()).getHours()) + ':' + pad((new Date()).getMinutes())
+		return moment().format('HH:mm')
 	}
 	
 	calculateCurrentTimeLeft() {
