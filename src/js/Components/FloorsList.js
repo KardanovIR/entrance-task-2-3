@@ -1,22 +1,32 @@
 import React, {Component} from 'react';
 
 import Floor from './Floor'
+import {withApollo} from "react-apollo";
 import {graphql} from "react-apollo/index";
 import gql from "graphql-tag";
 
 
 class FloorsList extends Component {
 	
-	constructor(props) {
+	constructor(props, context) {
 		super(props);
+		this.prev_rooms = [];
+	}
+	
+	componentWillUpdate() {
+		this.prev_rooms = this.props.data.rooms;
 	}
 	
 	render() {
-		if (this.props.data.loading) {
-			return <div/>;
-		}
 		let floors = {};
-		let rooms = this.props.data.rooms;
+		let rooms;
+		let {data} = this.props;
+		if (data.loading) {
+			rooms = this.prev_rooms;
+		} else {
+			rooms = data.rooms;
+		}
+		
 		rooms.forEach((room) => {
 			if (!floors.hasOwnProperty(room.floor)) {
 				floors[room.floor] = {
@@ -25,7 +35,8 @@ class FloorsList extends Component {
 			}
 			floors[room.floor].rooms.push(room);
 		});
-		return Object.keys(floors).map((key) => <Floor key={key} rooms={floors[key].rooms}/>)
+		
+		return Object.keys(floors).map((key) => <Floor key={key} name={key} rooms={floors[key].rooms}/>)
 	}
 }
 
@@ -52,9 +63,14 @@ const getRoomsWithEvents = gql`
 		}
 	 `;
 
-const FloorsListWithData = graphql(getRoomsWithEvents, {
+const FloorsListWithData = withApollo(graphql(getRoomsWithEvents, {
+	fetchPolicy: 'network-only',
 	options: ({date}) => ({variables: {date}}),
-})(FloorsList);
+	props: ({ownProps, data}) => ({
+		data: data,
+		ownProps: ownProps
+	}),
+})(FloorsList));
 
 
 export default FloorsListWithData

@@ -20,7 +20,17 @@ import './js/Modal'
 
 const client = new ApolloClient({
 	link: createHttpLink({uri: 'http://localhost:3010/graphql'}),
-	cache: new InMemoryCache()
+	cache: new InMemoryCache(),
+	defaultOptions: {
+		query: {
+			fetchPolicy: 'network-only',
+			errorPolicy: 'all',
+		},
+		watchQuery: {
+			fetchPolicy: 'network-only',
+			errorPolicy: 'ignore',
+		},
+	}
 });
 
 class App extends Component {

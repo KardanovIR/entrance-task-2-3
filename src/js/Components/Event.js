@@ -4,13 +4,8 @@ import moment from "moment";
 
 class Events extends Component {
 	
-	constructor(props, context) {
-		super(props, context);
-		this.items = props.items;
-	}
-	
 	render() {
-		return this.items.map((event, i) => {
+		return this.props.items.map((event, i) => {
 			const sec_in_day = 86400;
 			const start_date = moment(event.dateStart);
 			const end_date = moment(event.dateEnd);
@@ -19,7 +14,7 @@ class Events extends Component {
 			const left = diff_since_mn / sec_in_day * 100;
 			const diff_between = Math.abs(end_date.diff(start_date, 'seconds'));
 			let width = diff_between / sec_in_day * 100;
-			if ((width + left) > 100){
+			if ((width + left) > 100) {
 				width = 100 - left;
 			}
 			
