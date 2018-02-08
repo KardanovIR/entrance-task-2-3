@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import moment from "moment";
-
+import Popover from 'react-popover'
 
 class Events extends Component {
 	
@@ -17,19 +17,20 @@ class Events extends Component {
 			if ((width + left) > 100) {
 				width = 100 - left;
 			}
-			
-			return <div className="schedule-event-item" style={{width: width + '%', left: left + '%'}} key={i}>
-				<div className="schedule-event-popover">
-					<div className="schedule-popover-body">
-						<div className="schedule-popover-header">
-							<span>{event.title}</span>
-							<span className="schedule-popover-close"/>
+			return <div
+				className="schedule-event-item" style={{width: width + '%', left: left + '%'}} key={i}>
+				<Popover
+					className="schedule-event-popover"
+					preferPlace={'below'}
+					body={
+						<div>
+							<div className="schedule-popover-title">{event.title}</div>
+							<div className="schedule-popover-text">
+								{start_date.format('DD MMMM')} <span>&nbsp;·&nbsp;</span> {start_date.format('HH:mm')} - {end_date.format('HH:mm')}
+							</div>
 						</div>
-						<div className="schedule-popover-content">
-							{start_date.format()}
-						</div>
-					</div>
-				</div>
+					}
+					place={'below'}/>
 			</div>
 		})
 	}

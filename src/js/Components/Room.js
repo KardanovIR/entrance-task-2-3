@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Events from "./Event";
+import Events from "./Events";
 
 
 class Room extends Component {
