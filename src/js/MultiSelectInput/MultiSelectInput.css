@@ -1,0 +1,18 @@
+.multiselect_dropdown_wrapper {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	max-height: 136px;
+	background-color: #fff;
+	box-shadow: 0 1px 10px 0 rgba(0,44,92,0.28);
+	border-radius: 4px;
+	overflow: auto;
+	z-index: 50;
+}
+
+.multiselect_dropdown_container {
+	margin: 0;
+	padding: 0;
+}
+
